@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<!--Comentariu-->
+
+<html lang = "ro">
+
+    <head>
+
+        <%- include("../fragmente/head.ejs") %>
+
+        <title>Pizzeria Mozzeronni</title>
+        <meta name="keywords" content="pizza, pizzerie, băuturi, transport la domiciliu, București"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
+        <meta name="description" content="Pizza :D"><!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
+
+    </head>
+
+    <body>
+        
+        <%- include("../fragmente/header.ejs") %>
+        
+        <main>
+            <div id="grid-pagina">
+
+                <section id="welcome">
+                    <h2>Bine ati venit</h2>
+                    <%- locals.optiuniMeniu[1].unnest %>
+                    <p class="intro" >Vă mulțumim că ne vizitați site-ul.</p>
+                    <div class="intro-oferte">
+                        <div id = "text">
+                            Pizza
+                            <div id = "text_reflectat">
+                                Pizza
+                            </div>
+                        </div>
+                        <div id = "text">
+                            Racoritoare
+                            <div id = "text_reflectat">
+                                Racoritoare
+                            </div>
+                        </div>
+                        <div id = "text">
+                            Deserturi
+                            <div id = "text_reflectat">
+                                Deserturi
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
+                    <p class="anunt intro">Oferim si livrare prin curier.</p>
+                    <div id="dv-prezentare-1">
+                        <div id="dv-prezentare">
+                        <figure>
+                            <picture class="picture1">
+                                <!-- il ia pe primul care se potriveste cu query-ul din media-->
+                                <source srcset="./resurse/imagini/pizza-1.jpg" media="(max-width:700px)"/>
+                                <source srcset="./resurse/imagini/pizza-3.jpg" media="(max-width:1200px)"/>
+                                <img src="./resurse/imagini/pizza-2.jpg" alt="text" title="Pizza"/>
+                            </picture>
+                            <figcaption>Pizza</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                </section>
+
+                <section id="promotii">
+                    <h2>Promoții</h2>
+                    <br/>
+                    <article>
+                        <h3 class="titlu">Super ofertă de weekend</h3>
+                        <p><b>Pizzeria Mozzeronni</b> oferă <b>reduceri de <s>10%</s> <ins datetime="2024-03-19">15%</ins></b> pentru toate produsele cumpărate în intervalul 10-14.</p>
+                        <p>Oferta este valabilă doar în zilele de sâmbătă și duminică la sediile <abbr title="Pizzeria Mozzeronni">PM</abbr>.</p>
+                    </article>
+                    <hr/>
+                    <article>
+                        <h3>Ofertă pachet</h3>
+                        <p>Cofetăria Dulcelind oferă pachete cuprinzând:</p>
+                        <ol>
+                            <li>2 pizza medii</li>
+                            <li>Un desert</li>
+                            <li>2 sucuri</li>
+                        </ol>
+                        
+                    </article>
+                </section>
+
+                <section id="produse">
+                    <h2>Produsele noastre</h2>
+                    <section>
+                        <h3>Pizza</h3>
+                        <ul>
+                            <li>Pizza Quattro Formaggi</li>
+                            <li>Pizza Formaggi Pepperoni</li>
+                            <li>Pizza Quattro Stagioni</li>
+                            <li>Pizza Salami</li>
+                            <li>Pizza Margherita</li>
+                            <li>Pizza Hawai</li>
+                            <li>Pizza Vegetariana</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Racoritoare</h3>
+                        <ul>
+                            <li>Pepsi</li>
+                            <li>Scweps</li>
+                            <li>Apa plata/ minerala</li>
+                            <li>Lipton</li>
+                            <li>Miranda</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>Deserturi</h3>
+                        <ul>
+                            <li>Clatite cu Nutella</li>
+                            <li>Soufle de ciocolata</li>
+                            <li>Clatite cu fructe</li>
+                            <li>Placinta</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="orar">
+                    <h2>Orar</h2>
+                    <div class="divScroll">
+                        <table id="tab-orar">
+                            <thead>
+                                <tr>
+                                    <th>Perioadă</th>
+                                    <th>Zi</th>
+                                    <th>Interval</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="5">Zile<br/>Lucrătoare</td>
+                                    <td>Luni</td>
+                                    <td>10-18</td>
+                                </tr>
+                                <tr>
+                                    <td>Marti</td>
+                                    <td>10-18</td>
+                                </tr>
+                                <tr>                    
+                                    <td>Miercuri</td>
+                                    <td>10-18</td>
+                                </tr>
+                                <tr>                         
+                                    <td>Joi</td>
+                                    <td>10-18</td>
+                                </tr>
+                                <tr>                       
+                                    <td>Vineri</td>
+                                    <td>10-18</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">Weekend</td>
+                                    <td>Sambata</td>
+                                    <td>12-20</td>
+                                </tr>
+                                <tr>
+                                    <td>Duminica</td>
+                                    <td>12-20</td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    </div>
+                </section>
+
+                <section id="anunturi">
+                    <h2>Anunțuri</h2> <p><time datetime="2024-02-01">1 februarie 2024</time> <strong>Tocmai am deschis</strong></p>
+                </section>
+
+                <section id="index-intrebari">
+                    <h2>Întrebări frecvente</h2>
+                    <details><summary>Aveti si optiuni de post?</summary>
+                        <p>Da!</p>
+                    </details>
+                </section>
+                
+                <section id="evenimente">
+                    <h2>Evenimente</h2>
+                    <article>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas expedita rem ex soluta quasi praesentium a velit amet, laboriosam eius ratione eos aspernatur fugit inventore officiis sequi. Quidem, vel maxime.</p>
+                    </article>
+                </section>
+
+                <section id="utilizatori">
+                    <h2>Utilizatori</h2>
+                    <article>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas expedita rem ex soluta quasi praesentium a velit amet, laboriosam eius ratione eos aspernatur fugit inventore officiis sequi. Quidem, vel maxime.</p>
+                    </article>
+                </section>
+
+                <section id="statistici">
+                    <h2>Statistici</h2>
+                    <article>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas expedita rem ex soluta quasi praesentium a velit amet, laboriosam eius ratione eos aspernatur fugit inventore officiis sequi. Quidem, vel maxime.</p>
+                    </article>
+                </section>
+
+                <section id="despre">
+                    <h2>Despre</h2>
+                    <article>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas expedita rem ex soluta quasi praesentium a velit amet, laboriosam eius ratione eos aspernatur fugit inventore officiis sequi. Quidem, vel maxime.</p>
+                    </article>
+                </section>
+
+                <section id="galerie-statica">
+                    <h2>Galerie</h2>            
+                    <div id="grid-galerie">                
+                        <%                     
+                            var vIntervale=["dimineata","zi","noapte"];                    
+                            var d=new Date();                    
+                            var timpCurent=vIntervale[((d.getHours()>12) + (d.getHours()>20) + (d.getHours()<5) * 2)];
+                            var nrImagini = 0;
+                            var nrCurent = 0;
+                            for (let imag of locals.imagini) {                         
+                                if (imag?.timp?.includes(timpCurent)) { 
+                                    nrImagini++;
+                                }
+                            }
+                            nrImagini = parseInt((nrImagini/3))*3;
+                            for (let imag of locals.imagini) {                         
+                                if (imag?.timp?.includes(timpCurent) && nrCurent < nrImagini) {
+                                    nrCurent++;                    
+                                    %>                            
+                                    <figure>                                
+                                    <picture>                                    
+                                    <source srcset="<%= imag.fisier_mediu %>" media="(max-width:1200px)"/>                                    
+                                    <img src="<%= imag.fisier %>" alt="prajituri">                                
+                                    </picture>                                                        
+                                    <figcaption><%= imag.descriere%></figcaption>                            
+                                    </figure>                    
+                                <% } %>                
+                            <% } %>                        
+                        </div>
+                </section>
+            </div>
+            <section id="retete">
+                <h2>Retete</h2>
+                <div class="container-iframe">
+                    <div class="taburi-iframe">
+                        <a href="https://www.youtube.com/embed/1-SJGQ2HLp8" target="ifr-video">Reteta pizza</a>
+                        <a href="https://www.youtube.com/embed/G-jPoROGHGE" target="ifr-video">Reteta blat de pizza</a><br/>
+                    </div>
+                    
+                    
+                    <iframe class="ifr-vid" name="ifr-video" width="100%" height="100%" src="https://www.youtube.com/embed/1-SJGQ2HLp8" 
+                    frameborder="2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </section>
+            <br/>
+        </main>
+        <%- include("../fragmente/footer.ejs") %>
+
+    </body>
+
+</html>
