@@ -1,0 +1,47 @@
+{
+	"cale_galerie":"resurse/imagini/galerie",
+	"imagini": [
+		{
+			"fisier":"pizza-cu-branza.jpg",
+			"descriere":"Pizza cu branza",
+			"luni":["martie","februarie","noiembrie","aprilie","mai"],
+			"timp": ["dimineata","zi"]
+		},
+		{
+			"fisier":"pizza-cu-salam.jpg",
+			"descriere":"Pizza cu salam",
+			"luni":["ianuarie","februarie","iunie","mai"],
+			"timp": ["dimineata","noapte"]
+		},
+		{
+			"fisier":"pizza-cu-sunca.jpg",
+			"descriere":"Pizza cu sunca",
+			"luni":["ianuarie","noiembrie","iunie","martie","aprilie","mai"],
+			"timp": ["zi","noapte"]
+		},
+		{
+			"fisier":"pizza-in-cuptor.jpg",
+			"descriere":"Pizza in cuptor",
+			"luni":["noiembrie","aprilie"],
+			"timp": ["dimineata","zi","noapte"]
+		},
+		{
+			"fisier":"pizza-in-cutie.jpg",
+			"descriere":"Pizza in cutie",
+			"luni":["noiembrie","aprilie"],
+			"timp": ["dimineata","zi","noapte"]
+		},
+		{
+			"fisier":"pizza-quatro-formaggi.jpg",
+			"descriere":"Pizza quatro formaggi",
+			"luni":["noiembrie","aprilie"],
+			"timp": ["dimineata","zi","noapte"]
+		},
+		{
+			"fisier":"pizza-vegetariana.jpg",
+			"descriere":"pizza Vegetariana",
+			"luni":["noiembrie","aprilie"],
+			"timp": ["dimineata","zi","noapte"]
+		}
+	]
+}
