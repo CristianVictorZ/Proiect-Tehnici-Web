@@ -1,3 +1,18 @@
+function getSelectValues(select) {
+    var result = [];
+    var options = select && select.options;
+    var opt;
+  
+    for (var i=0, iLen=options.length; i<iLen; i++) {
+        opt = options[i];
+  
+        if (opt.selected) {
+            result.push(opt.value || opt.text);
+        }
+    }
+    return result;
+}
+
 window.addEventListener("load",function(){
     document.getElementById("inp-pret").onchange=function(){
         document.getElementById("infoRange").innerHTML=`(${this.value})`
@@ -7,47 +22,75 @@ window.addEventListener("load",function(){
     //document.getElementById("filtrare").addEventListener("click",function(){})
     document.getElementById("filtrare").onclick = function(){
         var inpNume = document.getElementById("inp-nume").value.trim().toLowerCase();
+        var inpIngrediente = document.getElementById("inp-ingrediente").value.trim().toLowerCase();
         var vRadio = document.getElementsByName("gr-rad");
-        var inpCalorii = "toate";
+        var inpGramaj = "toate";
         for(let r of vRadio)
         {
             if(r.checked)
             {
-                inpCalorii = r.value;
+                inpGramaj = r.value;
                 break;
             }
         }
 
-        let minCalorii, maxCalorii;
-        if(inpCalorii!="toate")
+        let minGramaj, maxGramaj;
+        if(inpGramaj!="toate")
         {
-            var aux = inpCalorii.split(":")
-            minCalorii = parseInt(aux[0])
-            maxCalorii = parseInt(aux[1])
+            var aux = inpGramaj.split(":")
+            minGramaj = parseInt(aux[0])
+            maxGramaj = parseInt(aux[1])
         }
 
         var inpPret = parseInt(document.getElementById("inp-pret").value)
 
-        var inpCateg = document.getElementById("inp-categorie").value.trim().toLowerCase();
+        var inpDim = document.getElementById("inp-dimensiune").value.trim().toLowerCase();
+        var inpDim2 = getSelectValues(document.getElementById("inp-dimensiune2"));
+
+        var vCheck = document.getElementsByName("gr_check");
+        var inpDim3 = [];
+        for(let c of vCheck)
+        {
+            if(c.checked)
+            {
+                inpDim3.push(c.value || c.text);;
+            }
+        }
 
         var produse = document.getElementsByClassName("produs");
+        /*
+        var valid = true;
+        if(inpNume.contains("/"))
+            valid = false;
+
+        console.log(valid);*/
+
         for(let produs of produse)
         {
             let valNume = produs.getElementsByClassName("val-nume")[0].innerHTML.trim().toLowerCase();
             let cond1 = valNume.startsWith(inpNume)
 
-            let valCalorii = parseInt(produs.getElementsByClassName("val-calorii")[0].innerHTML);
-            let cond2 = (inpCalorii=="toate" || (minCalorii <= valCalorii && valCalorii <maxCalorii))
+            let valGramaj = parseInt(produs.getElementsByClassName("val-gramaj")[0].innerHTML);
+            let cond2 = (inpGramaj=="toate" || (minGramaj <= valGramaj && valGramaj <maxGramaj))
 
             let valPret = parseFloat(produs.getElementsByClassName("val-pret")[0].innerHTML);
             let cond3 = valPret>inpPret;
 
-            let valCategorie = produs.getElementsByClassName("val-categorie")[0].innerHTML.trim().toLowerCase();
-            let cond4 = (inpCateg == "toate") || (inpCateg == valCategorie);
+            let valDimensiune = produs.getElementsByClassName("val-dimensiune")[0].innerHTML.trim().toLowerCase();
+            let cond4 = (inpDim == "toate") || (inpDim == valDimensiune);
 
-            if(cond1 && cond2 && cond3 && cond4)
+            let valIngrediente = produs.getElementsByClassName("val-ingrediente")[0].innerHTML.trim().toLowerCase();
+            let cond5 = valIngrediente.includes(inpIngrediente);
+
+            let valDimensiune2 = produs.getElementsByClassName("val-dimensiune")[0].innerHTML.trim().toLowerCase();
+            let cond6 = !(inpDim2.includes(valDimensiune2));
+
+            let valDimensiune3 = produs.getElementsByClassName("val-dimensiune")[0].innerHTML.trim().toLowerCase();
+            let cond7 = inpDim3.includes(valDimensiune3);
+
+            if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7)
             {
-                produs.style.display="block";
+                produs.style.display="grid";
             }else
             {
                 produs.style.display="none";
@@ -56,16 +99,25 @@ window.addEventListener("load",function(){
     }
 
     document.getElementById("resetare").onclick= function(){
-                
-        document.getElementById("inp-nume").value="";
         
-        document.getElementById("inp-pret").value=document.getElementById("inp-pret").min;
-        document.getElementById("inp-categorie").value="toate";
-        document.getElementById("i_rad4").checked=true;
-        var produse=document.getElementsByClassName("produs");
-        document.getElementById("infoRange").innerHTML="(0)";
-        for (let prod of produse){
-            prod.style.display="block";
+        if(confirm("Doriti sa resetati filtrele?")==true)
+        {
+            document.getElementById("inp-nume").value="";
+            document.getElementById("inp-ingrediente").value="";
+            document.getElementById("inp-pret").value=document.getElementById("inp-pret").min;
+            document.getElementById("inp-dimensiune").value="toate";
+            document.getElementById("inp-dimensiune2").value="niciuna";
+            document.getElementById("i_rad4").checked=true;
+            var vCheck = document.getElementsByName("gr_check");
+            for(let c of vCheck)
+            {
+                c.checked = true;
+            }
+            var produse=document.getElementsByClassName("produs");
+            document.getElementById("infoRange").innerHTML="(0)";
+            for (let prod of produse){
+                prod.style.display="grid";
+            }
         }
     }
 
@@ -73,14 +125,14 @@ window.addEventListener("load",function(){
         var produse = document.getElementsByClassName("produs");
         var v_produse = Array.from(produse);
         v_produse.sort(function(a,b){
-            let pret_a = parseFloat(a.getElementsByClassName("val-pret")[0].innerHTML);
-            let pret_b = parseFloat(b.getElementsByClassName("val-pret")[0].innerHTML);
-            if(pret_a == pret_b){
-                let nume_a = a.getElementsByClassName("val-nume")[0].innerHTML;
-                let nume_b = b.getElementsByClassName("val-nume")[0].innerHTML;
-                return semn * (nume_a.localeCompare(nume_b));
+            let dim_a = a.getElementsByClassName("val-dimensiune")[0].innerHTML;
+            let dim_b = b.getElementsByClassName("val-dimensiune")[0].innerHTML;
+            if(dim_a == dim_b){
+                let pret_a = parseFloat(a.getElementsByClassName("val-pret")[0].innerHTML);
+                let pret_b = parseFloat(b.getElementsByClassName("val-pret")[0].innerHTML);
+                return semn * (pret_a-pret_b);
             }
-            return semn * (pret_a-pret_b);
+            return semn * (dim_a.localeCompare(dim_b));
         })
         for(let prod of v_produse){
             prod.parentNode.appendChild(prod);
