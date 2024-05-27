@@ -7,6 +7,7 @@ body{
     --culoare-border: #F04A1D;
     --culoare-fundal-highlight: #F5C5A4;
     --culoare-meniu: #F0711D;
+    --culoare-heading: black;
     
     --spatiere: 100px;
     --padding-intern:4%;
@@ -14,6 +15,23 @@ body{
     padding-right: var(--spatiere);
 
     --gradient: 20%;
+}
+
+body.dark{
+    background-color: rgb(60, 60, 60);
+    --culoare-inchisa: #800F00;
+    --culoare-deschisa: #5c421a;
+    --culoare-text: rgb(255, 255, 255);
+    --culoare-text-selectat: rgb(0, 0, 0);
+    --culoare-fundal: #400000;
+    --culoare-border: #5a1c0b;
+    --culoare-fundal-highlight: #6b0000;
+    --culoare-meniu: #3b1c08;
+    --culoare-heading: rgb(255, 233, 169);
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+    color: var(--culoare-heading);
 }
 
 #link-top{
